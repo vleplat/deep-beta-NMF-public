@@ -33,8 +33,8 @@ options.maxIterADMM = 200;
 options.rho = 200; 
 options.accADMM = 1; 
 %options.lambda = [10; 1]; 
-options.alpha_tilde = 1/2*ones(1,2); 
-[Wl,Hl,el,inWH,output] = deepKL_NMF(X',r,options); 
+options.alpha_tilde = 1*ones(1,2); 
+[Wl,Hl,el,inWH,output] = deepKL_NMF(X,r,options); 
 
 %% Display results 
 % Figure default
