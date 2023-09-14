@@ -67,7 +67,7 @@ options.alpha_tilde = [4;1];
 % Urban : [0.0000005;0.1];
 % Moffet : [4;1];
 % Jasper Ridge: [0.00004;0.01];
-% Samson: [0.45;0.45];
+% Samson: [0.45;0.45]; or [1.50;0.15];
 
 %%%% parameters for ADMM procedure
 options.rho = 100;           % 10-100: to fine tune
