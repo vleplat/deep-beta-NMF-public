@@ -45,7 +45,7 @@ In order to run the demos, you will need to add to your MATLAB path:
 
 ## Demo file
  
- A demo with minimal requirements is available. To proceed, please type "1" when running the ```main.m``` file.
+ A demo is available. To proceed, please type "1", "2" or "3" when running the ```main.m``` file.
  
  ## Tuning the parameters
  
@@ -60,7 +60,7 @@ In order to run the demos, you will need to add to your MATLAB path:
 For benchmarked approaches, the parameters have been tuned according to the original works.
  
   
-  ## Reproduce figures from the paper
+  ## Reproduce figures and results from the paper
   
   To do so, you need to run the ```main.m``` file. Here, a menu is available and allows you to choose which figure or table you want to generate. Each number in the table below corresponds to a set of figures.
 
