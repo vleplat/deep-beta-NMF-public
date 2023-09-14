@@ -2,8 +2,6 @@
 %%% Test on HSI data sets
 %%%------------------------------------------------------------------------
 close all; clear all; clc; 
-cd('./');
-addpath(genpath('./'));
 
 %% ------------------------------------------------------------------------
 %%% Libraries
@@ -66,27 +64,18 @@ options.epsi = 10^-7;   % Algorithm 1: 10^-5, Algorithm 2: 10^-4 - 10^-3
 %%% min-vol parameters
 options.delta = ones(1,length(r));
 options.alpha_tilde = [4;1];
-% Tumor : options.alpha_tilde = [0.000005;0.01];[2.5*10^-5;10^-2];
-% Urban : options.alpha_tilde = [0.0000005;0.1];
-% Moffet : options.alpha_tilde = [0.4;0.05]; [4;0.005]; [10;0.001];[4;1];
-% Jasper Ridge: options.alpha_tilde = [0.00004;0.01];
-% Samson: options.alpha_tilde = [0.05;0.1]; [1;0.1]; [1.5;0.15]; for r=[5
-% 2], [0.3;0.4];
+% Tumor : [2.5*10^-5;10^-2];
+% Urban : [0.0000005;0.1];
+% Moffet : [4;1];
+% Jasper Ridge: [0.00004;0.01];
+% Samson: [0.45;0.45];
 
 %%%% parameters for ADMM procedure
-%%%%% Fast configuration - Algorithm 2 faster and accuracies of ADMM-procedure increase 
-%%%%%  along iterations of the global scheme
 options.rho = 100;           % 10-100: to fine tune
 options.thres = 10^-6;      % stopping criterion for ADMM-procedure
 options.innerloop = 1;      % inner loop for Step 1 of ADMM-procedure
 options.maxIterADMM = 200;  
 options.accADMM = 1;        % Call for the accelerated ADMM procedure
-%%%%% Slow configuration - Algorithm 2 slower but accuracies of ADMM-procedure higher
-%%%%% at each step 
-% options.rho = 100;
-% options.thres = 10^-4;
-% options.innerloop = 3;
-% options.maxIterADMM = 500;
 
 %%% Call of methods
 [Wl,Hl,el,inWH,output] = deepKL_NMF(X,r,options);
@@ -119,13 +108,6 @@ affichage((Hl{2}*Hl{1})',2,mx,my); title('Second layer deep KL-NMF');
 affichage(inWH.H{1}',2,mx,my);  title('First layer multilayer KL-NMF');  
 affichage((inWH.H{2}*inWH.H{1})',2,mx,my); title('Second layer multilayer KL-NMF');  
 % affichage((inWH.H{3}*inWH.H{2}*inWH.H{1})',2,mx,my); title('Third layer multilayer KL-NMF');  
-
-%%% Sparsity computation
-% Sparsity of multilayer KL-NMF 
-% [sp_col(inWH.H{1}), sp_col(inWH.H{2}*inWH.H{1})] , %sp_col(inWH.H{3}*inWH.H{2}*inWH.H{1})] 
-
-% Sparsity of multilayer KL-NMF 
-% [sp_col(Hl{1}), sp_col(Hl{2}*Hl{1})] , %sp_col(Hl{3}*Hl{2}*Hl{1})] 
 
 %%% Spectral signatures
 figure;
