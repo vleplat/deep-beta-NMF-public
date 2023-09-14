@@ -9,7 +9,7 @@ X = X/100; % for numerical stability
 r = [80; 40; 20] % ranks of the deep factorizations
 rngsee = 35; % control random seed
 disp('Running multilayer KL-NMF'); 
-maxiit = 1000; % number of iterations 
+maxiit = 1000; % number of iterations
 options.maxiter = maxiit; 
 options.rngseed = rngsee; % control the random seed 
 [W,H,e] = multilayerKLNMF(X',r,options); 
@@ -31,19 +31,18 @@ options.maxIterADMM = 200;
 % Figure default
 set(0, 'DefaultAxesFontSize', 25);
 set(0, 'DefaultLineLineWidth', 2);
-firtiterdis = 1; 
 maxiy = 0; 
-plot(el(firtiterdis:end,1)/e(1)); hold on; 
-maxiy = max(maxiy, max(el(firtiterdis:end,1)/e(1))); 
-plot(el(firtiterdis:end,2)/e(2),'--'); 
-maxiy = max(maxiy, max(el(firtiterdis:end,2)/e(2))); 
-plot(el(firtiterdis:end,3)/e(3),'-.'); 
-maxiy = max(maxiy, max(el(firtiterdis:end,3)/e(3))); 
+plot(el(:,1)/e(1)); hold on; 
+maxiy = max(maxiy, max(el(:,1)/e(1))); 
+plot(el(:,2)/e(2),'--'); 
+maxiy = max(maxiy, max(el(:,2)/e(2))); 
+plot(el(:,3)/e(3),'-.'); 
+maxiy = max(maxiy, max(el(:,3)/e(3))); 
 legend('Level 1', 'Level 2', 'Level 3','Interpreter','latex'); 
    % 'Weighted', 'ML-NMF-1', 'ML-NMF-2', 'ML-NMF-3'); 
 xlabel('Iterations','Interpreter','latex'); 
 ylabel('Ratio deep vs.\ multilayer','Interpreter','latex'); 
-axis([0 options.outerit 0 ceil(10*max(el(firtiterdis:end,1)/e(1)))/10])
+axis([0 options.outerit 0 ceil(10*max(el(:,1)/e(1)))/10])
 grid on
 
 numparligne = 10; 
