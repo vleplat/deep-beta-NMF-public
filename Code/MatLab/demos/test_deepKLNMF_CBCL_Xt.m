@@ -1,8 +1,8 @@
 % Test on CBCL 
 clear all; clc; 
 
-addpath("Utils/") 
-addpath(genpath(pwd))
+% addpath("Utils/") 
+% addpath(genpath(pwd))
 % This code also needs the toolbox from https://gitlab.com/ngillis/nmfbook/
 
 
