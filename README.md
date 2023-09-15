@@ -10,7 +10,7 @@ This MATLAB software reproduces the results from the following paper:
 ```
 @unpublished{leplat-xxxxx,
   TITLE = {{Deep Nonnegative Matrix Factorization with Beta Divergences}},
-  AUTHOR = {Leplat, Valentin Le Thi Khanh, Hien and Gillis, Nicolas and Onwunta, Akwum },
+  AUTHOR = {Leplat, Valentin and Le Thi Khanh, Hien and Gillis, Nicolas and Onwunta, Akwum },
   URL = {https://},
   NOTE = {working paper or preprint},
   YEAR = {2023},
