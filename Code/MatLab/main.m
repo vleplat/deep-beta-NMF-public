@@ -25,7 +25,7 @@
 % and figures produced will be stored in the figures folder.
 %
 % 1:  Demo for CBCL produces Fig. 2-3 and Table 2
-% 2:  Benchmarking for topic modeling
+% 2:  Demo for topic modeling, see section 4.2
 % 3:  Benchmarking for HSI tests produces Fig. 5-10 
 %-------------------------------------------------------------------------%
 addpath(genpath('./'));
