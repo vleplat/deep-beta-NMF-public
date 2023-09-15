@@ -29,8 +29,13 @@
 % 3:  Benchmarking for HSI tests produces Fig. 5-10 
 %-------------------------------------------------------------------------%
 addpath(genpath('./'));
-list_demos = ["test_deepKLNMF_CBCL","test_deepKLNMF_text","test_deepKLNMF_HSI"];
+list_demos = ["test_deepKLNMF_CBCL","test_deepKLNMF_text","test_deepKLNMF_HSI"]; 
 
-prompt = "Which file do you want to run ?";
+disp('Which file do you want to run ?'); 
+disp('Enter 1 for facial features extraction (CBCL)'); 
+disp('Enter 2 for topic modeling (TDT2-top30)'); 
+disp('Enter 3 for hyperspectral unmixing'); 
+prompt = "";
+
 num = input(prompt);
 eval(list_demos(num));
