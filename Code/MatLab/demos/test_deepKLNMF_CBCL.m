@@ -6,7 +6,7 @@ addpath(genpath(pwd))
 
 load CBCL; 
 % X = X/100; % for numerical stability 
-r = [80; 40; 20] % ranks of the deep factorizations
+r = [80, 40, 20] % ranks of the deep factorizations
 rngsee = 35; % control random seed
 disp('Running multilayer KL-NMF'); 
 maxiit = 1000; % number of iterations
