@@ -20,7 +20,7 @@ for i = 1 : r
 end 
 K = unique(K); 
 %% Parameters 
-r = [20; 10; 5]; % ranks of the deep factorizations
+r = [20, 10, 5]; % ranks of the deep factorizations
 rngsee = 2023; % control random seed
 X = X(K,:); 
 X=full(X);
