@@ -26,19 +26,13 @@ The baseline algorithms used in the manuscript are courtesy of their respective 
 
 ## Content
  
- - /Libraries : contains helpful libaries.
+ - /Libraries : contains helpful libaries; in particular Libraries/nmfbook-master/ contains the code of the NMF toolbox from https://gitlab.com/ngillis/nmfbook/ 
  
  - /demos : contains demo files that produce tables and figures.
 
  - main.m : codes that allow to run desired demos.
  
  - /Utils : contains helpful files and MatLab routines to run the demos.
-
-## Minimal requirements
-
-In order to run the demos, you will need to add to your MATLAB path:
-- NMF toolboxes from Nicolas Gillis book: https://gitlab.com/ngillis/nmfbook 
-
 
 
 ## Demo file
