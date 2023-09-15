@@ -19,7 +19,7 @@ end
 L = length(r); 
 % Check that the ranks decrease 
 [a,b] = sort(r,'descend'); 
-if min(b == (1:L)') == 0
+if min(b == (1:L)) == 0
     warning('The ranks of deep NMF should be decreasing.');
 end
 if ~isfield(options,'maxiter')
