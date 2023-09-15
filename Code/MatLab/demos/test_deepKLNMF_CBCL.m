@@ -5,7 +5,6 @@ addpath(genpath(pwd))
 % This code also needs the toolbox from https://gitlab.com/ngillis/nmfbook/
 
 load CBCL; 
-% X = X/100; % for numerical stability 
 r = [80, 40, 20] % ranks of the deep factorizations
 rngsee = 35; % control random seed
 disp('Running multilayer KL-NMF'); 
