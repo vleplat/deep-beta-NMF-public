@@ -12,7 +12,7 @@ This MATLAB software reproduces the results from the following paper:
   TITLE = {{Deep Nonnegative Matrix Factorization with Beta Divergences}},
   AUTHOR = {Leplat, Valentin and Le Thi Khanh, Hien and Gillis, Nicolas and Onwunta, Akwum },
   URL = {https://},
-  NOTE = {working paper or preprint},
+  NOTE = {preprint},
   YEAR = {2023},
   MONTH = Sept,
   KEYWORDS = {deep nonnegative matrix factorization ; $\beta$-divergences ; minimum-volume regularization ; identifiability ; multi-block nonconvex optimization ; facial feature extraction ; topic modeling ; hyperspectral unmixing},
