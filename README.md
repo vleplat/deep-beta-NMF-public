@@ -67,5 +67,5 @@ For benchmarked approaches, the parameters have been tuned according to the orig
 | Number | Content                                                         |
 |--------|-----------------------------------------------------------------|
 | 1      | Demo for CBCL                                                   |
-| 2      | Benchmarking for topic modeling                                 |
+| 2      | Demo for topic modeling                                         |
 | 3      | Benchmarking for HSI tests                                      |
