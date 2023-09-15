@@ -30,8 +30,6 @@ The baseline algorithms used in the manuscript are courtesy of their respective 
  
  - /demos : contains demo files that produce tables and figures.
 
- - /Datasets_TopicModel : contains data sets for tests reported in Section 4.2 of the preprint
-
  - main.m : codes that allow to run desired demos.
  
  - /Utils : contains helpful files and MatLab routines to run the demos.
