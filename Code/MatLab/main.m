@@ -29,7 +29,7 @@
 % 3:  Benchmarking for HSI tests produces Fig. 5-10 
 %-------------------------------------------------------------------------%
 addpath(genpath('./'));
-list_demos = ["test_deepKLNMF_CBCL_Xt","test_deepKLNMF_text","test_deepKLNMF_HSI"];
+list_demos = ["test_deepKLNMF_CBCL","test_deepKLNMF_text","test_deepKLNMF_HSI"];
 
 prompt = "Which file do you want to run ?";
 num = input(prompt);
