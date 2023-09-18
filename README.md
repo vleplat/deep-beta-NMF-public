@@ -8,14 +8,13 @@ Contact: ```v.leplat@skoltech.ru``` or ```Nicolas.GILLIS@umons.ac.be```
 This MATLAB software reproduces the results from the following paper:
 
 ```
-@unpublished{leplat-xxxxx,
-  TITLE = {{Deep Nonnegative Matrix Factorization with Beta Divergences}},
-  AUTHOR = {Leplat, Valentin and Le Thi Khanh, Hien and Onwunta, Akwum  and Gillis, Nicolas},
-  URL = {https://},
-  NOTE = {preprint},
-  YEAR = {2023},
-  MONTH = Sept,
-  KEYWORDS = {deep nonnegative matrix factorization ; $\beta$-divergences ; minimum-volume regularization ; identifiability ; multi-block nonconvex optimization ; facial feature extraction ; topic modeling ; hyperspectral unmixing},
+@misc{leplat2023deep,
+      title={Deep Nonnegative Matrix Factorization with Beta Divergences}, 
+      author={Valentin Leplat and Le Thi Khanh Hien and Akwum Onwunta and Nicolas Gillis},
+      year={2023},
+      eprint={2309.08249},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
 }
 ```
 
