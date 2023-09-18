@@ -6,7 +6,7 @@
 
 % This software reproduces the results from the preprint called:
 % "Deep Nonnegative Matrix Factorization with Beta Divergences" - V.
-% Leplat, N.Gillis, A. Onwunta and L.-T.-K. Hien
+% Leplat, N.Gillis, A. Onwunta and L.-T.-K. Hien. arXiv 2309.08249,2018
 
 %In order to run the demos, you will need to add to your MATLAB path:
 
