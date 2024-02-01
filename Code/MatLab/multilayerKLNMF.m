@@ -26,7 +26,10 @@ if ~isfield(options,'normalize')
     options.normalize = 2; %2: scale (W,H) such that He = e
                            %3: scale (W,H) such that W^Te = e
 end
-options.beta = 1;
+if ~isfield(options,'beta')
+    options.beta = 1;
+end
+
 L = length(r); 
 options.delta = 1e-6; 
 

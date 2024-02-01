@@ -48,8 +48,11 @@ if ~isfield(options,'accADMM')
     options.accADMM = 0;
 end
 
+if ~isfield(options,'beta')
+    options.beta = 1;
+end
+
 % Misc parameters 
-options.beta = 1;
 
 if ~isfield(options,'W') || ~isfield(options,'H')
     % Initialization by multiplayer KL-NMF
@@ -106,8 +109,8 @@ for it = 1 : options.outerit
         if i == 1 && L > 1
             if ~options.min_vol
                 lam = options.lambda(2)/options.lambda(1); 
-                [W{1},H{1}] = levelUpdateDeepKLNMF(H{1},X,W{1},W{2}*H{2},lam,options.epsi);
-            else 
+                [W{1},H{1}] = levelUpdateDeepKLNMF(H{1},X,W{1},W{2}*H{2},lam,options.epsi,options.beta);
+            elseif options.beta == 1 
                 Wp = W{2}*H{2};
                 [W{1},H{1},res{i}] = levelUpdateDeepminvolKLNMF(H{1},X,W{1},Wp,options,i);
             end
@@ -122,7 +125,7 @@ for it = 1 : options.outerit
                 [W{i},H{i}] = normalizeWH(W{i},H{i},2); 
                 %%% error computation for the layer at hand
                 e(it+1,i) = betadiv(W{i-1},W{i}*H{i},options.beta);
-            else
+            elseif options.beta == 1
                 if i == 1
                     Wprev = X; 
                 else
@@ -152,8 +155,8 @@ for it = 1 : options.outerit
         else
             if ~options.min_vol
                 lam = options.lambda(i+1)/options.lambda(i);
-                [W{i},H{i}] = levelUpdateDeepKLNMF(H{i},W{i-1},W{i},W{i+1}*H{i+1},lam,options.epsi);
-            else
+                [W{i},H{i}] = levelUpdateDeepKLNMF(H{i},W{i-1},W{i},W{i+1}*H{i+1},lam,options.epsi,options.beta);
+            elseif options.beta == 1
                 Wp = W{i+1}*H{i+1};
                 [W{i},H{i},res{i}] = levelUpdateDeepminvolKLNMF(H{i},W{i-1},W{i},Wp,options,i);
             end

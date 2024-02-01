@@ -2,7 +2,7 @@
 %       min_{W,H} KL(X,WH) + lam * KL(W,Wp)
 % Using one step MU
 
-function [W,H] = levelUpdateDeepKLNMF(H,X,W,Wp,lam,epsi)
+function [W,H] = levelUpdateDeepKLNMF(H,X,W,Wp,lam,epsi,beta)
 
 [m,n] = size(X);
 [~,r1] = size(W);
@@ -13,8 +13,13 @@ e = ones(m,n);
 prod = W*H;
 JN1 = ones(n,1);
 Wt = W';
-C = (Wt*(X./prod));
-D = Wt*e;
+if beta == 1
+    C = (Wt*(X./prod));
+    D = Wt*e;
+elseif beta==3/2
+    C=(Wt*(((prod).^(beta-2)).*X));
+    D=Wt*(prod).^(beta-1);
+end
 [~,I] = min(D,[],2);
 idx = sub2ind(size(D),1:r1,I');
 mu_0_H = (D(idx)-C(idx).*(H(idx)))';
@@ -26,6 +31,16 @@ H = max(H,eps);
 
 % Update of factor W
 Ht = H'; 
-a = e*Ht - lam*log(Wp);
-b = W.*((X./(W*H)*Ht));
-W = max(eps,1/lam * b./(lambertw(1/lam*b.*exp(a/lam))));
+if beta == 1
+    a = e*Ht - lam*log(Wp);
+    b = W.*((X./(W*H)*Ht));
+    W = max(eps,1/lam * b./(lambertw(1/lam*b.*exp(a/lam))));
+elseif beta==3/2
+    prod_pow = sqrt((W*H));
+    W_pow = sqrt(W);
+    A = (1./W_pow).*(prod_pow*Ht) + 2*lam;
+    B = W_pow.*((X./prod_pow)*Ht);
+    C = 2*lam*W_pow;
+    W = 1/4*((C + sqrt(C.^2 + 4*A.*B))./(A)).^2;
+    W = max(eps,W);
+end
