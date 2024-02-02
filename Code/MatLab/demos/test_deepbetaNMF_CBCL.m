@@ -10,13 +10,13 @@ options.HnormType = 'cols'; % "cols": for e^T H = e^T, "rows": for H e = e
 options.epsi = 10^-7;
 r = [80, 40, 20, 10] % ranks of the deep factorizations
 rngsee = 35; % control random seed
-disp('Running multilayer KL-NMF'); 
+disp('Running multilayer beta-NMF'); 
 maxiit = 2000; % number of iterations
 options.maxiter = maxiit; 
 options.rngseed = rngsee; % control the random seed 
 [W,H,e] = multilayerKLNMF(X',r,options); 
 
-disp('Running deep KL-NMF');
+disp('Running deep beta-NMF');
 options.outerit = maxiit/2; % half iterations for deep KL-NMF
 options.maxiter = maxiit/2; % half iterations for initialization with multilayer KL-NMF
 % for min-vol
@@ -54,16 +54,16 @@ affichage([Hl{1}' ones(size(X,1),numparligne+mod(r(1),10)) ...
            Hl{1}'*Hl{2}'  ones(size(X,1),numparligne+mod(r(2),10)) ... 
            Hl{1}'*Hl{2}'*Hl{3}' ones(size(X,1),numparligne+mod(r(3),10)) ... 
            Hl{1}'*Hl{2}'*Hl{3}'*Hl{4}'] , numparligne,19,19); 
-title('Basis images extracted by deep KL-NMF'); 
+title('Basis images extracted by deep beta-NMF'); 
 
 affichage([H{1}' ones(size(X,1),numparligne+mod(r(1),10)) ...
            H{1}'*H{2}'  ones(size(X,1),numparligne+mod(r(2),10)) ... 
            H{1}'*H{2}'*H{3}' ones(size(X,1),numparligne+mod(r(3),10)) ...
            H{1}'*H{2}'*H{3}'*H{4}'] , numparligne,19,19);
-title('Basis images extracted by multilayer KL-NMF'); 
+title('Basis images extracted by multilayer beta-NMF'); 
 
-disp('Sparsity of multilayer KL-NMF:') 
+disp('Sparsity of multilayer beta-NMF:') 
 [sp_col(H{1}'), sp_col(H{1}'*H{2}'), sp_col(H{1}'*H{2}'*H{3}')] 
 
-disp('Sparsity of deep KL-NMF:')  
+disp('Sparsity of deep beta-NMF:')  
 [sp_col(Hl{1}'), sp_col(Hl{1}'*Hl{2}'), sp_col(Hl{1}'*Hl{2}'*Hl{3}')] 

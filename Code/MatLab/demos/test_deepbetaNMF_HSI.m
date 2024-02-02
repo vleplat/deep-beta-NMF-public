@@ -108,21 +108,21 @@ legend('Level 1', 'Level 2', ...   %'Level 3',
         'Weighted'); 
 
 %%% Display abundance maps 
-affichage(Hl{1}',2,mx,my); title('First layer deep KL-NMF'); 
-affichage((Hl{2}*Hl{1})',2,mx,my); title('Second layer deep KL-NMF'); 
+affichage(Hl{1}',2,mx,my); title('First layer deep beta-NMF'); 
+affichage((Hl{2}*Hl{1})',2,mx,my); title('Second layer deep beta-NMF'); 
 % affichage((Hl{3}*Hl{2}*Hl{1})',2,mx,my); title('Third layer deep KL-NMF'); 
 
-affichage(inWH.H{1}',2,mx,my);  title('First layer multilayer KL-NMF');  
-affichage((inWH.H{2}*inWH.H{1})',2,mx,my); title('Second layer multilayer KL-NMF');  
+affichage(inWH.H{1}',2,mx,my);  title('First layer multilayer beta-NMF');  
+affichage((inWH.H{2}*inWH.H{1})',2,mx,my); title('Second layer multilayer beta-NMF');  
 % affichage((inWH.H{3}*inWH.H{2}*inWH.H{1})',2,mx,my); title('Third layer multilayer KL-NMF');  
 
 %%% Spectral signatures
 figure;
 plot(Wl{1});
-title('First layer deep KL-NMF'); 
+title('First layer deep beta-NMF'); 
 figure;
 plot(Wl{2});
-title('Second layer deep KL-NMF'); 
+title('Second layer deep beta-NMF'); 
 
 %%% min-vol info
 if options.min_vol
