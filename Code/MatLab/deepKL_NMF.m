@@ -18,7 +18,7 @@ if nargin <= 2
 end
 L = length(r); 
 % Check that the ranks decrease 
-[a,b] = sort(r,'descend'); 
+[~,b] = sort(r,'descend'); 
 if min(b == (1:L)) == 0
     warning('The ranks of deep NMF should be decreasing.');
 end
@@ -52,12 +52,16 @@ if ~isfield(options,'beta')
     options.beta = 1;
 end
 
+if ~isfield(options,'HnormType')
+    options.HnormType = 'rows';
+end
+
 % Misc parameters 
 
 if ~isfield(options,'W') || ~isfield(options,'H')
     % Initialization by multiplayer KL-NMF
     disp('Initialization with multi-layer KL-NMF');
-    options.normalize = 2+options.min_vol; 
+    options.normalize = 2+options.min_vol;
     [W,H,e] = multilayerKLNMF(X,r,options); 
 end
 %% Keep initial solutions in memory 
@@ -109,7 +113,7 @@ for it = 1 : options.outerit
         if i == 1 && L > 1
             if ~options.min_vol
                 lam = options.lambda(2)/options.lambda(1); 
-                [W{1},H{1}] = levelUpdateDeepKLNMF(H{1},X,W{1},W{2}*H{2},lam,options.epsi,options.beta);
+                [W{1},H{1}] = levelUpdateDeepKLNMF(H{1},X,W{1},W{2}*H{2},lam,options.epsi,options.beta,options.HnormType);
             elseif options.beta == 1 
                 Wp = W{2}*H{2};
                 [W{1},H{1},res{i}] = levelUpdateDeepminvolKLNMF(H{1},X,W{1},Wp,options,i);
@@ -118,11 +122,30 @@ for it = 1 : options.outerit
             logdetSave(it+1,i) = log10(det(W{i}'*W{i}+options.delta(i)*eye(r(i))));
         elseif i == L
             if ~options.min_vol
-                %%% Update of factors W_L and H_L
-                H{i} = MUbeta(W{i-1},W{i},H{i},options.beta);
-                W{i} = MUbeta(W{i-1}',H{i}',W{i}',options.beta)'; 
-                %%% scale 
-                [W{i},H{i}] = normalizeWH(W{i},H{i},2); 
+                if strcmp(options.HnormType,'rows')
+                    %%% Update of factors W_L and H_L
+                    H{i} = MUbeta(W{i-1},W{i},H{i},options.beta);
+                    W{i} = MUbeta(W{i-1}',H{i}',W{i}',options.beta)'; 
+                    %%% scale 
+                    [W{i},H{i}] = normalizeWH(W{i},H{i},2); 
+                elseif strcmp(options.HnormType,'cols')
+                    prod = W{i}*H{i};
+                    Wt = W{i}';
+                    C = (Wt*(((prod).^(options.beta-2)).*W{i-1}));
+                    D = Wt*(prod).^(options.beta-1);
+                    %%% Computation of Lagrange multipliers
+                    [~,n] = size(W{i-1}); 
+                    [~,I] = min(D,[],1);
+                    idx=sub2ind(size(D),I,1:n);
+                    H_current = H{i};
+                    mu_0_H = (D(idx)-C(idx).*(H_current(idx)))';
+                    mu_H = updatemu_hcols(C,D,H{i},1,mu_0_H,options.epsi);
+                    %%% Update matrix H_L 
+                    H{i} = H{i} .* (C./(D-ones(r(i),1)*mu_H'+eps));
+                    H{i} = max(H{i},eps); 
+                    %%% Update matrix W_L 
+                    W{i} = MUbeta(W{i-1}',H{i}',W{i}',options.beta)'; 
+                end
                 %%% error computation for the layer at hand
                 e(it+1,i) = betadiv(W{i-1},W{i}*H{i},options.beta);
             elseif options.beta == 1
@@ -155,7 +178,7 @@ for it = 1 : options.outerit
         else
             if ~options.min_vol
                 lam = options.lambda(i+1)/options.lambda(i);
-                [W{i},H{i}] = levelUpdateDeepKLNMF(H{i},W{i-1},W{i},W{i+1}*H{i+1},lam,options.epsi,options.beta);
+                [W{i},H{i}] = levelUpdateDeepKLNMF(H{i},W{i-1},W{i},W{i+1}*H{i+1},lam,options.epsi,options.beta,options.HnormType);
             elseif options.beta == 1
                 Wp = W{i+1}*H{i+1};
                 [W{i},H{i},res{i}] = levelUpdateDeepminvolKLNMF(H{i},W{i-1},W{i},Wp,options,i);

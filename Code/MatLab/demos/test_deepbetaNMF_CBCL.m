@@ -6,19 +6,19 @@ addpath(genpath(pwd))
 
 load CBCL; 
 options.beta = 3/2;
+options.HnormType = 'cols'; % "cols": for e^T H = e^T, "rows": for H e = e 
+options.epsi = 10^-7;
 r = [80, 40, 20, 10] % ranks of the deep factorizations
 rngsee = 35; % control random seed
 disp('Running multilayer KL-NMF'); 
-maxiit = 10000; % number of iterations
+maxiit = 2000; % number of iterations
 options.maxiter = maxiit; 
 options.rngseed = rngsee; % control the random seed 
 [W,H,e] = multilayerKLNMF(X',r,options); 
 
 disp('Running deep KL-NMF');
-%options.outerit = maxiit/2; % half iterations for deep KL-NMF
-%options.maxiter = maxiit/2; % half iterations for initialization with multilayer KL-NMF
-options.outerit = 8000; % half iterations for deep KL-NMF
-options.maxiter = 2000; % half iterations for initialization with multilayer KL-NMF
+options.outerit = maxiit/2; % half iterations for deep KL-NMF
+options.maxiter = maxiit/2; % half iterations for initialization with multilayer KL-NMF
 % for min-vol
 options.min_vol = 0;        % activate minvol
 options.delta = ones(length(r),1);          
