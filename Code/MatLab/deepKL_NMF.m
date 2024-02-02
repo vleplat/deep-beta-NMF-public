@@ -59,8 +59,8 @@ end
 % Misc parameters 
 
 if ~isfield(options,'W') || ~isfield(options,'H')
-    % Initialization by multiplayer KL-NMF
-    disp('Initialization with multi-layer KL-NMF');
+    % Initialization by multiplayer beta-NMF
+    disp('Initialization with multi-layer beta-NMF');
     options.normalize = 2+options.min_vol;
     [W,H,e] = multilayerKLNMF(X,r,options); 
 end
@@ -107,7 +107,7 @@ if options.min_vol
 end
 
 %% Optimizing the levels alternatively
-disp('Alternating optimization of the L layers in deep KL-NMF (iter : error)'); 
+disp('Alternating optimization of the L layers in deep beta-NMF (iter : error)'); 
 for it = 1 : options.outerit
     for i = 1 : L
         if i == 1 && L > 1
