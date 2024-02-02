@@ -22,6 +22,12 @@ L = length(r);
 if min(b == (1:L)) == 0
     warning('The ranks of deep NMF should be decreasing.');
 end
+% Check the value given for Beta
+if isfield(options,'beta')
+    if options.beta ~= 1 && options.beta ~= 3/2
+        error('Wrong values for beta')
+    end
+end
 if ~isfield(options,'maxiter')
     options.maxiter = 500; % number of iterations for the init. 
 end

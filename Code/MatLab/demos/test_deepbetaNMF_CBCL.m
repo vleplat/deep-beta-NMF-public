@@ -17,8 +17,8 @@ options.rngseed = rngsee; % control the random seed
 [W,H,e] = multilayerKLNMF(X',r,options); 
 
 disp('Running deep beta-NMF');
-options.outerit = maxiit/2; % half iterations for deep KL-NMF
-options.maxiter = maxiit/2; % half iterations for initialization with multilayer KL-NMF
+options.outerit = maxiit/2; % half iterations for deep beta-NMF
+options.maxiter = maxiit/2; % half iterations for initialization with multilayer beta-NMF
 % for min-vol
 options.min_vol = 0;        % activate minvol
 options.delta = ones(length(r),1);          
