@@ -1,5 +1,5 @@
 # Software for deep nonnegative matrix factorization with the beta-divergence:
-This repository contains the software for deep KL-NMF with and without minimum-volume regularization.
+This repository contains the software for deep beta-NMF with and without minimum-volume regularization, for beta={1,3/2}.
 
 Copyright (c) 2023 Valentin Leplat, Nicolas Gillis, Akwum Onwunta and Le Thi Khanh Hien  <br>
 Contact: ```v.leplat@skoltech.ru``` or ```Nicolas.GILLIS@umons.ac.be```
